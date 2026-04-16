@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Scentra — Consultoria Estratégica em Tecnologia</title>
+<meta name="description" content="A Scentra é a principal consultoria nacional especializada em go-to-market de tecnologia. Transformando tecnologia em resultado desde 2014.">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#0f1f3d;
+  --navy-mid:#1a2f52;
+  --accent:#2a6ef5;
+  --cream:#f7f5f0;
+  --text:#1a1a1a;
+  --muted:#6b6b6b;
+  --border:#e0ddd6;
+  --white:#fff;
+}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;font-weight:400;color:var(--text);background:var(--white);font-size:16px;line-height:1.7}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,0.96);backdrop-filter:blur(8px);border-bottom:1px solid var(--border);padding:0 6%;height:64px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-family:'DM Serif Display',serif;font-size:22px;color:var(--navy);text-decoration:none}
+.nav-links{display:flex;gap:28px;list-style:none}
+.nav-links a{font-size:14px;font-weight:500;color:var(--muted);text-decoration:none;transition:color .2s}
+.nav-links a:hover{color:var(--navy)}
+.nav-cta{background:var(--navy)!important;color:var(--white)!important;padding:8px 20px;border-radius:6px}
+.nav-cta:hover{background:var(--navy-mid)!important}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px}
+.hamburger span{display:block;width:22px;height:2px;background:var(--navy);border-radius:2px;transition:.3s}
+.mobile-menu{display:none;position:fixed;top:64px;left:0;right:0;background:var(--white);border-bottom:1px solid var(--border);padding:20px 6%;flex-direction:column;gap:16px;z-index:99}
+.mobile-menu a{font-size:15px;font-weight:500;color:var(--text);text-decoration:none;padding:8px 0;border-bottom:1px solid var(--border)}
+.mobile-menu.open{display:flex}
+
+/* LAYOUT */
+section{padding:96px 6%}
+.container{max-width:1080px;margin:0 auto}
+.section-label{font-size:11px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:14px}
+.section-title{font-family:'DM Serif Display',serif;font-size:clamp(30px,4vw,46px);line-height:1.1;letter-spacing:-.5px;color:var(--navy);margin-bottom:22px}
+.section-body{font-size:15px;color:var(--muted);line-height:1.75}
+.section-body p+p{margin-top:14px}
+
+/* HERO */
+#hero{min-height:100vh;background:var(--navy);display:flex;align-items:center;padding-top:64px;position:relative;overflow:hidden}
+#hero::before{content:'';position:absolute;top:-180px;right:-180px;width:560px;height:560px;border-radius:50%;border:1px solid rgba(255,255,255,.05)}
+#hero::after{content:'';position:absolute;bottom:-80px;left:-80px;width:360px;height:360px;border-radius:50%;border:1px solid rgba(255,255,255,.04)}
+.hero-inner{max-width:1080px;margin:0 auto;width:100%;position:relative;z-index:1}
+.hero-tag{display:inline-block;font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:26px;padding-bottom:12px;border-bottom:1px solid rgba(255,255,255,.1)}
+.hero-title{font-family:'DM Serif Display',serif;font-size:clamp(40px,6vw,76px);line-height:1.05;color:var(--white);letter-spacing:-1px;max-width:780px;margin-bottom:24px}
+.hero-title em{font-style:italic;color:rgba(255,255,255,.5)}
+.hero-sub{font-size:18px;color:rgba(255,255,255,.55);max-width:500px;margin-bottom:44px;line-height:1.6}
+.hero-actions{display:flex;gap:14px;flex-wrap:wrap}
+.btn-primary{background:var(--white);color:var(--navy);padding:14px 28px;border-radius:6px;font-size:15px;font-weight:500;text-decoration:none;transition:opacity .2s;display:inline-block}
+.btn-primary:hover{opacity:.9}
+.btn-ghost{border:1px solid rgba(255,255,255,.22);color:rgba(255,255,255,.7);padding:14px 28px;border-radius:6px;font-size:15px;font-weight:500;text-decoration:none;transition:.2s;display:inline-block}
+.btn-ghost:hover{border-color:rgba(255,255,255,.55);color:var(--white)}
+.hero-stats{display:flex;gap:44px;margin-top:72px;padding-top:44px;border-top:1px solid rgba(255,255,255,.09);flex-wrap:wrap}
+.stat-num{font-family:'DM Serif Display',serif;font-size:34px;color:var(--white);line-height:1;margin-bottom:5px}
+.stat-label{font-size:12px;color:rgba(255,255,255,.38);letter-spacing:.03em}
+
+/* SOBRE */
+#sobre{background:var(--cream)}
+.sobre-grid{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:start}
+.sobre-values{display:flex;flex-direction:column;gap:18px;margin-top:8px}
+.value-item{display:flex;gap:14px;align-items:flex-start}
+.value-dot{width:7px;height:7px;border-radius:50%;background:var(--accent);flex-shrink:0;margin-top:9px}
+.value-text{font-size:14px;color:var(--muted);line-height:1.55}
+.sobre-box{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:28px;margin-top:32px}
+.sobre-box-title{font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:12px}
+.sobre-box-text{font-family:'DM Serif Display',serif;font-size:17px;color:var(--navy);line-height:1.4;font-style:italic}
+
+/* HISTÓRICO */
+#historico{background:var(--white)}
+.timeline{display:flex;flex-direction:column;gap:0;margin-top:48px;position:relative}
+.timeline::before{content:'';position:absolute;left:90px;top:0;bottom:0;width:1px;background:var(--border)}
+.tl-item{display:grid;grid-template-columns:90px 1fr;gap:32px;padding-bottom:40px;position:relative}
+.tl-year{font-family:'DM Serif Display',serif;font-size:14px;color:var(--muted);padding-top:2px;text-align:right;padding-right:28px;position:relative}
+.tl-year::after{content:'';position:absolute;right:-5px;top:8px;width:9px;height:9px;border-radius:50%;background:var(--white);border:2px solid var(--accent)}
+.tl-title{font-weight:500;font-size:15px;color:var(--navy);margin-bottom:6px}
+.tl-text{font-size:14px;color:var(--muted);line-height:1.65}
+
+/* FRAMEWORK */
+#framework{background:var(--navy)}
+#framework .section-title{color:var(--white)}
+#framework .section-label{color:rgba(255,255,255,.38)}
+#framework .section-body{color:rgba(255,255,255,.5)}
+.fw-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:52px}
+.fw-card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:28px 22px}
+.fw-num{font-family:'DM Serif Display',serif;font-size:28px;color:rgba(255,255,255,.18);margin-bottom:14px}
+.fw-title{font-weight:500;font-size:16px;color:var(--white);margin-bottom:10px}
+.fw-desc{font-size:13px;color:rgba(255,255,255,.42);line-height:1.6}
+
+/* SERVIÇOS */
+#servicos{background:var(--cream)}
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:52px}
+.service-card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:32px 28px}
+.service-num{font-family:'DM Serif Display',serif;font-size:13px;color:var(--muted);margin-bottom:18px;display:block}
+.service-title{font-family:'DM Serif Display',serif;font-size:21px;color:var(--navy);margin-bottom:10px;line-height:1.2}
+.service-desc{font-size:14px;color:var(--muted);line-height:1.65}
+.service-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:18px}
+.tag{font-size:11px;font-weight:500;padding:4px 10px;border-radius:20px;background:var(--cream);color:var(--muted);border:1px solid var(--border)}
+
+/* SEGMENTOS */
+#segmentos{background:var(--white)}
+.seg-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:48px}
+.seg-item{border:1px solid var(--border);border-radius:8px;padding:18px 20px;font-size:14px;color:var(--navy);font-weight:500}
+.seg-item span{display:block;font-size:12px;font-weight:400;color:var(--muted);margin-top:4px}
+
+/* ESCRITÓRIOS */
+#escritorios{background:var(--cream)}
+.offices-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:48px}
+.office-card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:24px 20px}
+.office-city{font-weight:500;font-size:15px;color:var(--navy);margin-bottom:4px}
+.office-badge{font-size:11px;color:var(--accent);font-weight:500;letter-spacing:.05em;text-transform:uppercase}
+
+/* EQUIPE */
+#equipe{background:var(--navy)}
+#equipe .section-title{color:var(--white)}
+#equipe .section-label{color:rgba(255,255,255,.38)}
+.team-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-top:52px}
+.team-card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:26px 16px;text-align:center}
+.team-avatar{width:52px;height:52px;border-radius:50%;background:rgba(255,255,255,.09);display:flex;align-items:center;justify-content:center;margin:0 auto 14px;font-family:'DM Serif Display',serif;font-size:18px;color:rgba(255,255,255,.65)}
+.team-name{font-weight:500;color:var(--white);font-size:14px;margin-bottom:6px}
+.team-role{font-size:11px;color:rgba(255,255,255,.38);line-height:1.45}
+
+/* IDENTIDADE */
+#identidade{background:var(--white)}
+.id-grid{display:grid;grid-template-columns:1fr 1fr;gap:52px;align-items:start}
+.id-table{width:100%;border-collapse:collapse;margin-top:16px}
+.id-table tr{border-bottom:1px solid var(--border)}
+.id-table tr:last-child{border-bottom:none}
+.id-table td{padding:14px 0;font-size:14px;vertical-align:top}
+.id-table td:first-child{font-weight:500;color:var(--muted);width:130px;font-size:13px;text-transform:uppercase;letter-spacing:.04em}
+.id-table td:last-child{color:var(--text)}
+
+/* CONTATO */
+#contato{background:var(--cream)}
+.contato-grid{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:start}
+.contato-info{display:flex;flex-direction:column;gap:22px;margin-top:28px}
+.info-label{font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+.info-value{font-size:15px;color:var(--navy)}
+.contato-form{display:flex;flex-direction:column;gap:14px}
+.form-group{display:flex;flex-direction:column;gap:5px}
+.form-label{font-size:13px;font-weight:500;color:var(--muted)}
+.form-input,.form-textarea{font-family:'DM Sans',sans-serif;font-size:15px;padding:11px 14px;border:1px solid var(--border);border-radius:6px;background:var(--white);color:var(--text);outline:none;transition:border-color .2s;width:100%}
+.form-input:focus,.form-textarea:focus{border-color:var(--accent)}
+.form-textarea{resize:vertical;min-height:110px}
+.btn-submit{background:var(--navy);color:var(--white);border:none;padding:13px 26px;border-radius:6px;font-family:'DM Sans',sans-serif;font-size:15px;font-weight:500;cursor:pointer;transition:background .2s;align-self:flex-start}
+.btn-submit:hover{background:var(--navy-mid)}
+
+/* FOOTER */
+footer{background:var(--navy);padding:36px 6%;text-align:center;border-top:1px solid rgba(255,255,255,.06)}
+.footer-logo{font-family:'DM Serif Display',serif;font-size:20px;color:var(--white);margin-bottom:8px}
+.footer-sub{font-size:13px;color:rgba(255,255,255,.3);margin-bottom:4px}
+.footer-text{font-size:12px;color:rgba(255,255,255,.2)}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .sobre-grid,.contato-grid,.id-grid{grid-template-columns:1fr;gap:36px}
+  .services-grid,.fw-grid{grid-template-columns:1fr}
+  .seg-grid,.offices-grid{grid-template-columns:1fr 1fr}
+  .team-grid{grid-template-columns:repeat(2,1fr)}
+  .nav-links{display:none}
+  .hamburger{display:flex}
+  .timeline::before{left:60px}
+  .tl-item{grid-template-columns:60px 1fr;gap:20px}
+}
+@media(max-width:580px){
+  .hero-stats{gap:28px}
+  .seg-grid,.offices-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="#">Scentra</a>
+  <ul class="nav-links">
+    <li><a href="#sobre">Sobre</a></li>
+    <li><a href="#historico">História</a></li>
+    <li><a href="#framework">Framework</a></li>
+    <li><a href="#servicos">Serviços</a></li>
+    <li><a href="#equipe">Equipe</a></li>
+    <li><a href="#contato" class="nav-cta">Contato</a></li>
+  </ul>
+  <div class="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#sobre" onclick="toggleMenu()">Sobre</a>
+  <a href="#historico" onclick="toggleMenu()">História</a>
+  <a href="#framework" onclick="toggleMenu()">Framework</a>
+  <a href="#servicos" onclick="toggleMenu()">Serviços</a>
+  <a href="#equipe" onclick="toggleMenu()">Equipe</a>
+  <a href="#contato" onclick="toggleMenu()">Contato</a>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-inner">
+    <span class="hero-tag">Consultoria Estratégica em Tecnologia · Fundada em 2014 · São Paulo, Brasil</span>
+    <h1 class="hero-title">Transformando tecnologia <em>em resultado.</em></h1>
+    <p class="hero-sub">A Scentra ajuda empresas de tecnologia a ir ao mercado com estratégia real — metodologia construída para a complexidade do Brasil.</p>
+    <div class="hero-actions">
+      <a href="#contato" class="btn-primary">Fale com a gente</a>
+      <a href="#sobre" class="btn-ghost">Conheça a firma</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="stat-num">2014</div>
+        <div class="stat-label">Fundação em São Paulo</div>
+      </div>
+      <div>
+        <div class="stat-num">4</div>
+        <div class="stat-label">Escritórios no Brasil</div>
+      </div>
+      <div>
+        <div class="stat-num">Top 8</div>
+        <div class="stat-label">Consultoras estratégicas do país</div>
+      </div>
+      <div>
+        <div class="stat-num">5</div>
+        <div class="stat-label">Sócios fundadores</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOBRE -->
+<section id="sobre">
+  <div class="container">
+    <div class="sobre-grid">
+      <div>
+        <div class="section-label">Sobre a Scentra</div>
+        <h2 class="section-title">Presença que se instala. Resultado que fica.</h2>
+        <div class="section-body">
+          <p>O nome diz tudo: <em>scent</em> (cheiro) + <em>centro</em>. A ideia de algo que se expande a partir de um núcleo, que permeia o ambiente sem que se consiga precisar de onde vem.</p>
+          <p>É exatamente assim que a firma entende seu papel: não como um agente externo que chega com um relatório e vai embora, mas como uma presença que se instala na estratégia do cliente e se espalha por dentro da operação.</p>
+          <p>Somos a única grande consultoria brasileira construída especificamente para o mercado de tecnologia — com a profundidade das globais e a velocidade de quem conhece o Brasil por dentro.</p>
+        </div>
+        <div class="sobre-box">
+          <div class="sobre-box-title">Missão</div>
+          <div class="sobre-box-text">"Transformar a estratégia de go-to-market de empresas de tecnologia em vantagem competitiva sustentável no mercado brasileiro."</div>
+        </div>
+        <div class="sobre-box" style="margin-top:14px">
+          <div class="sobre-box-title">Visão</div>
+          <div class="sobre-box-text">"Ser a consultora estratégica de referência para toda empresa de tecnologia que queira crescer no Brasil."</div>
+        </div>
+      </div>
+      <div>
+        <div class="section-label">Valores</div>
+        <div class="sobre-values">
+          <div class="value-item"><div class="value-dot"></div><div class="value-text">Excelência técnica e rigor analítico</div></div>
+          <div class="value-item"><div class="value-dot"></div><div class="value-text">Transparência e ética nos negócios</div></div>
+          <div class="value-item"><div class="value-dot"></div><div class="value-text">Inovação orientada a resultados</div></div>
+          <div class="value-item"><div class="value-dot"></div><div class="value-text">Colaboração e diversidade de competências</div></div>
+          <div class="value-item"><div class="value-dot"></div><div class="value-text">Proximidade com a execução — não apenas diagnóstico, mas entrega</div></div>
+        </div>
+        <div class="sobre-box" style="margin-top:32px">
+          <div class="sobre-box-title">Posicionamento</div>
+          <div class="sobre-box-text">"A única grande consultoria brasileira construída especificamente para o mercado de tecnologia — com a profundidade das globais e a velocidade de quem conhece o Brasil por dentro."</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HISTÓRICO -->
+<section id="historico">
+  <div class="container">
+    <div class="section-label">Trajetória</div>
+    <h2 class="section-title">Nossa história</h2>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-year">2014</div>
+        <div class="tl-content">
+          <div class="tl-title">Origem e Fundação — São Paulo</div>
+          <div class="tl-text">A Scentra nasce com uma constatação direta: empresas de tecnologia no Brasil constroem produtos bons, mas travam na hora de ir a mercado. As grandes consultorias globais eram caras demais, lentas demais e genéricas demais para esse perfil de empresa. A Scentra foi criada para esse espaço.</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-year">2014–17</div>
+        <div class="tl-content">
+          <div class="tl-title">Construção de Metodologia</div>
+          <div class="tl-text">Atuação deliberadamente seletiva — poucos clientes, muito foco. Desenvolvimento e validação do Scentra GTM Framework™, construído a partir de dados e casos reais do mercado brasileiro. Primeiros contratos relevantes em segurança da informação, automação industrial e SaaS financeiro.</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-year">2017–20</div>
+        <div class="tl-content">
+          <div class="tl-title">Expansão e Consolidação</div>
+          <div class="tl-text">Abertura de unidades em Belo Horizonte e Rio de Janeiro. Lançamento do Scentra Market Intelligence Hub. Primeiras parcerias com fundos de venture capital e aceleradoras de referência. Consolidação como referência nacional em estratégia de go-to-market para tecnologia.</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-year">2020–22</div>
+        <div class="tl-content">
+          <div class="tl-title">Virada e Reconhecimento Nacional</div>
+          <div class="tl-text">A pandemia acelerou a transformação digital e a demanda por consultoria especializada explodiu. A firma triplicou seu quadro de consultores, abriu escritório em Brasília para o mercado de govtech, e foi reconhecida nos principais rankings setoriais. Lançamento do Scentra Ventures Advisory para operações pré-IPO e M&A.</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-year">2022–hoje</div>
+        <div class="tl-content">
+          <div class="tl-title">Maturidade e Posição de Mercado</div>
+          <div class="tl-text">Reconhecida como uma das oito maiores consultorias estratégicas do Brasil e a principal consultoria nacional especializada em go-to-market de tecnologia. Quatro escritórios, portfólio de startups a corporações com receita superior a R$ 1 bilhão.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FRAMEWORK -->
+<section id="framework">
+  <div class="container">
+    <div class="section-label">Metodologia proprietária</div>
+    <h2 class="section-title">Scentra GTM Framework™</h2>
+    <div class="section-body" style="max-width:560px">
+      <p>Diferente dos frameworks importados das consultorias globais, o Scentra GTM Framework™ foi construído a partir de casos reais do mercado brasileiro — incorporando variáveis que qualquer consultor estrangeiro ignoraria.</p>
+    </div>
+    <div class="fw-grid">
+      <div class="fw-card">
+        <div class="fw-num">01</div>
+        <div class="fw-title">Mercado</div>
+        <div class="fw-desc">Mapeamento de segmentos, análise de concentração regional de decisores e sazonalidade fiscal do mercado brasileiro.</div>
+      </div>
+      <div class="fw-card">
+        <div class="fw-num">02</div>
+        <div class="fw-title">Posicionamento</div>
+        <div class="fw-desc">Diferenciação competitiva adaptada ao comportamento particular do comprador corporativo nacional.</div>
+      </div>
+      <div class="fw-card">
+        <div class="fw-num">03</div>
+        <div class="fw-title">Canal</div>
+        <div class="fw-desc">Mapeamento de canais de distribuição no mercado brasileiro com benchmarks proprietários de conversão por setor.</div>
+      </div>
+      <div class="fw-card">
+        <div class="fw-num">04</div>
+        <div class="fw-title">Receita</div>
+        <div class="fw-desc">Precificação e modelagem de receita considerando a complexidade tributária na venda de software no Brasil.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVIÇOS -->
+<section id="servicos">
+  <div class="container">
+    <div class="section-label">O que fazemos</div>
+    <h2 class="section-title">Serviços</h2>
+    <div class="services-grid">
+      <div class="service-card">
+        <span class="service-num">01</span>
+        <div class="service-title">Go-to-Market Estratégico</div>
+        <p class="service-desc">Estratégia e execução de entrada no mercado com o Scentra GTM Framework™. Não entregamos apenas diagnóstico — ficamos ao lado do cliente durante a implementação, com equipes integradas e acompanhamento por resultado.</p>
+        <div class="service-tags">
+          <span class="tag">SaaS B2B</span>
+          <span class="tag">Fintechs</span>
+          <span class="tag">Scale-ups</span>
+        </div>
+      </div>
+      <div class="service-card">
+        <span class="service-num">02</span>
+        <div class="service-title">Inteligência de Mercado</div>
+        <p class="service-desc">Diagnósticos baseados no Scentra Market Intelligence Hub — base proprietária de dados sobre comportamento de compra corporativo, benchmarks de conversão por setor e mapeamento de canais de distribuição no Brasil.</p>
+        <div class="service-tags">
+          <span class="tag">Dados proprietários</span>
+          <span class="tag">Benchmarks</span>
+          <span class="tag">Competitivo</span>
+        </div>
+      </div>
+      <div class="service-card">
+        <span class="service-num">03</span>
+        <div class="service-title">Ventures Advisory</div>
+        <p class="service-desc">Prática dedicada a empresas em estágios pré-IPO e processos de M&A no setor de tecnologia — ampliando a atuação para além do go-to-market operacional e entrando na arena da estratégia corporativa de alto nível.</p>
+        <div class="service-tags">
+          <span class="tag">Pré-IPO</span>
+          <span class="tag">M&A</span>
+          <span class="tag">Estratégia corporativa</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SEGMENTOS -->
+<section id="segmentos">
+  <div class="container">
+    <div class="section-label">Onde atuamos</div>
+    <h2 class="section-title">Segmentos atendidos</h2>
+    <div class="section-body" style="max-width:520px"><p>Do portfólio atual da Scentra — de startups em fase de expansão a corporações com receita superior a R$ 1 bilhão.</p></div>
+    <div class="seg-grid">
+      <div class="seg-item">SaaS B2B<span>Software como serviço para empresas</span></div>
+      <div class="seg-item">Fintechs<span>Tecnologia financeira</span></div>
+      <div class="seg-item">Healthtechs<span>Tecnologia em saúde</span></div>
+      <div class="seg-item">Edtechs<span>Tecnologia educacional</span></div>
+      <div class="seg-item">Legaltechs<span>Tecnologia jurídica</span></div>
+      <div class="seg-item">Tecnologia Industrial<span>Automação e manufatura</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ESCRITÓRIOS -->
+<section id="escritorios">
+  <div class="container">
+    <div class="section-label">Presença nacional</div>
+    <h2 class="section-title">Escritórios</h2>
+    <div class="offices-grid">
+      <div class="office-card">
+        <div class="office-city">São Paulo</div>
+        <div class="office-badge">Sede</div>
+      </div>
+      <div class="office-card">
+        <div class="office-city">Rio de Janeiro</div>
+        <div class="office-badge" style="color:var(--muted)">Unidade</div>
+      </div>
+      <div class="office-card">
+        <div class="office-city">Belo Horizonte</div>
+        <div class="office-badge" style="color:var(--muted)">Unidade</div>
+      </div>
+      <div class="office-card">
+        <div class="office-city">Brasília</div>
+        <div class="office-badge" style="color:var(--muted)">Unidade — Govtech</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EQUIPE -->
+<section id="equipe">
+  <div class="container">
+    <div class="section-label">Liderança</div>
+    <h2 class="section-title">A equipe</h2>
+    <div class="team-grid">
+      <div class="team-card">
+        <div class="team-avatar">G</div>
+        <div class="team-name">Gabriel de Pinho Rodrigues</div>
+        <div class="team-role">CEO — Diretor Executivo</div>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar">J</div>
+        <div class="team-name">Julia Azevedo Sobrinho Duarte</div>
+        <div class="team-role">Diretora de Design e Identidade Visual</div>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar">L</div>
+        <div class="team-name">Lucas Vieira de Macêdo</div>
+        <div class="team-role">Diretor de Relacionamento e Eventos</div>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar">C</div>
+        <div class="team-name">Clara Machado Fonseca</div>
+        <div class="team-role">Diretora de Análise e Inteligência de Negócios</div>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar">P</div>
+        <div class="team-name">Pedro Henrique Silva Botezine</div>
+        <div class="team-role">Diretor de Infraestrutura e Suporte Técnico</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- IDENTIDADE -->
+<section id="identidade">
+  <div class="container">
+    <div class="id-grid">
+      <div>
+        <div class="section-label">Identificação</div>
+        <h2 class="section-title">Dados da empresa</h2>
+        <table class="id-table">
+          <tr><td>Razão Social</td><td>Scentra Consultoria Estratégica em Tecnologia Ltda.</td></tr>
+          <tr><td>Nome Fantasia</td><td>Scentra</td></tr>
+          <tr><td>Segmento</td><td>Consultoria Estratégica em Tecnologia e Go-to-Market</td></tr>
+          <tr><td>Fundação</td><td>2014 — São Paulo, SP</td></tr>
+          <tr><td>Sócios</td><td>5 (cinco)</td></tr>
+          <tr><td>LinkedIn</td><td>linkedin.com/company/scentra-consultoria</td></tr>
+          <tr><td>E-mail</td><td>contatoscentraconsultoria@gmail.com</td></tr>
+        </table>
+      </div>
+      <div>
+        <div class="section-label">Presença</div>
+        <h2 class="section-title">Go-to-Market · Estratégia · Crescimento</h2>
+        <div class="section-body">
+          <p>A Scentra opera a partir de quatro escritórios — São Paulo (sede), Rio de Janeiro, Belo Horizonte e Brasília — e conta com um quadro de consultores com formação nas principais escolas de negócios do Brasil e do exterior.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTATO -->
+<section id="contato">
+  <div class="container">
+    <div class="contato-grid">
+      <div>
+        <div class="section-label">Contato</div>
+        <h2 class="section-title">Vamos conversar?</h2>
+        <div class="section-body"><p>Se você tem uma empresa de tecnologia e quer crescer no Brasil, a Scentra provavelmente tem algo a contribuir.</p></div>
+        <div class="contato-info">
+          <div>
+            <div class="info-label">E-mail</div>
+            <div class="info-value">contatoscentraconsultoria@gmail.com</div>
+          </div>
+          <div>
+            <div class="info-label">LinkedIn</div>
+            <div class="info-value">linkedin.com/company/scentra-consultoria</div>
+          </div>
+          <div>
+            <div class="info-label">Escritórios</div>
+            <div class="info-value">São Paulo · Rio de Janeiro · Belo Horizonte · Brasília</div>
+          </div>
+        </div>
+      </div>
+      <form class="contato-form" onsubmit="return false;">
+        <div class="form-group">
+          <label class="form-label">Nome</label>
+          <input class="form-input" type="text" placeholder="Seu nome completo">
+        </div>
+        <div class="form-group">
+          <label class="form-label">E-mail</label>
+          <input class="form-input" type="email" placeholder="seu@email.com.br">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Empresa</label>
+          <input class="form-input" type="text" placeholder="Nome da empresa">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Segmento</label>
+          <input class="form-input" type="text" placeholder="SaaS, fintech, healthtech...">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Mensagem</label>
+          <textarea class="form-textarea" placeholder="Conte um pouco sobre o desafio que você quer resolver..."></textarea>
+        </div>
+        <button class="btn-submit" type="submit">Enviar mensagem</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">Scentra</div>
+  <div class="footer-sub">Consultoria Estratégica em Tecnologia</div>
+  <div class="footer-text">© 2026 Scentra Consultoria Estratégica em Tecnologia Ltda. · contatoscentraconsultoria@gmail.com</div>
+</footer>
+
+<script>
+function toggleMenu(){
+  document.getElementById('mobileMenu').classList.toggle('open');
+}
+document.querySelectorAll('a[href^="#"]').forEach(function(a){
+  a.addEventListener('click',function(){
+    document.getElementById('mobileMenu').classList.remove('open');
+  });
+});
+</script>
+
+</body>
+</html>
